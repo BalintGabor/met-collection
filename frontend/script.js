@@ -28,9 +28,19 @@ const loadEvent = async () => {
             departmentSearch.addEventListener("click", clickFetch);
             function clickFetch() {
                 let input = departmentSearch.value;
-                console.log(input)
+                chosenDepartment(input);
             }
         })(departmentSearch);
+    }
+
+    async function chosenDepartment(departmentId) {
+    
+        // Fetch the chosen department's objects
+        const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&departmentId=${departmentId}&q=""`);
+        const responseJson = await response.json();
+        const objects = responseJson.objectIDs;
+        console.log(responseJson)
+        console.log(objects)
     }
 }
 
