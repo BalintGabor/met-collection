@@ -77,6 +77,46 @@ const loadEvent = async () => {
             });
 
         }
+
+        // Pagination container
+        function setupPagination(currentPage) {
+            const pagination = document.querySelector("#pagination");
+            pagination.innerHTML = "";
+
+            // Fill up the pagination container
+            function paginationFunc() {
+                let paginationStart = 1;
+                let paginationEnd = Math.ceil(objects.length / objectsPerPage);
+                for (let i = paginationStart; i <= paginationEnd; i++) {
+                    const link = document.createElement("a");
+                    link.href = "#";
+                    link.innerText = i;
+                    link.id = "a" + i;
+
+                    // Put an active class for the currentPage
+                    if (i === currentPage) {
+                        link.classList.add("active");
+                    }
+
+                    // Eventlistener for the pages
+                    link.addEventListener("click", (event) => {
+                        event.preventDefault();
+                        currentPage = i;
+                        showObjects(currentPage);
+
+                        const currentActive = pagination.querySelector(".active");
+                        currentActive.classList.remove("active");
+                        link.classList.add("active");
+                        setupPagination(currentPage);
+                        console.log(currentActive)
+                    });
+                    pagination.appendChild(link);
+                }
+            }
+            paginationFunc();
+
+        }
+        setupPagination(currentPage);
         showObjects(currentPage);
     }
 }
