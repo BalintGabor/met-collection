@@ -83,10 +83,23 @@ const loadEvent = async () => {
             const pagination = document.querySelector("#pagination");
             pagination.innerHTML = "";
 
+            // Even if there were fewer pages before or after the currentPage than the paginationDistance, the same number of pages (2x paginationDistance + currentPage) should appear in the pagination
+            const totalPages = Math.ceil(objects.length / objectsPerPage)
+            let paginationStart, paginationEnd;
+            let paginationDistance = 3;
+            if ((currentPage - paginationDistance) < 1) {
+                paginationStart = 1;
+                paginationEnd = paginationStart + (2 * paginationDistance);
+            } else if ((currentPage + paginationDistance) > totalPages) {
+                paginationStart = totalPages - (2 * paginationDistance);
+                paginationEnd = totalPages;
+            } else {
+                paginationStart = currentPage - paginationDistance;
+                paginationEnd = currentPage + paginationDistance;
+            }
+
             // Fill up the pagination container
             function paginationFunc() {
-                let paginationStart = 1;
-                let paginationEnd = Math.ceil(objects.length / objectsPerPage);
                 for (let i = paginationStart; i <= paginationEnd; i++) {
                     const link = document.createElement("a");
                     link.href = "#";
@@ -108,7 +121,6 @@ const loadEvent = async () => {
                         currentActive.classList.remove("active");
                         link.classList.add("active");
                         setupPagination(currentPage);
-                        console.log(currentActive)
                     });
                     pagination.appendChild(link);
                 }
