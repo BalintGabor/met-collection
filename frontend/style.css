@@ -69,12 +69,123 @@ body .hidden {
 }
 
 body #departments-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  max-width: 1600px;
   overflow: hidden;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0px auto;
+  padding-top: 20px;
+  -webkit-transition: 1s;
+  transition: 1s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+}
+
+@media screen and (max-width: 1600px) {
+  body #departments-container {
+    max-width: 1300px;
+  }
+}
+
+@media screen and (max-width: 1320px) {
+  body #departments-container {
+    max-width: 980px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  body #departments-container {
+    max-width: 650px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  body #departments-container {
+    max-width: 300px;
+  }
+}
+
+body #departments-container .department-card {
+  width: 20%;
+  min-height: 250px;
+  padding: 10px;
+}
+
+@media screen and (max-width: 1600px) {
+  body #departments-container .department-card {
+    min-width: 25%;
+  }
+}
+
+@media screen and (max-width: 1320px) {
+  body #departments-container .department-card {
+    min-width: 33%;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  body #departments-container .department-card {
+    min-width: 50%;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  body #departments-container .department-card {
+    min-width: 100%;
+  }
+}
+
+body #departments-container .department-card .department-button {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 300px;
+  height: 100%;
+}
+
+body #departments-container .department-card .department-button .department-image-container {
+  position: absolute;
+  top: 0px;
+  background-image: linear-gradient(0deg, #E4002B 5px, #FFFFFF 5px);
+  -webkit-transition: 1s;
+  transition: 1s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
 }
 
 body #departments-container .department-card .department-button .department-image-container img {
   width: 300px;
   height: 170px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  -webkit-transition: 1s;
+  transition: 1s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+}
+
+body #departments-container .department-card .department-button .department-image-container:hover {
+  -webkit-box-shadow: inset 0px -200px 0px -10px #E4002B;
+          box-shadow: inset 0px -200px 0px -10px #E4002B;
+}
+
+body #departments-container .department-card .department-button .department-image-container:hover img {
+  opacity: 0.3;
+}
+
+body #departments-container .department-card .department-button h2 {
+  position: absolute;
+  top: 180px;
+  text-align: start;
 }
 
 body #departments-container-hider {

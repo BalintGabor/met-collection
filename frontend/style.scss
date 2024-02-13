@@ -67,14 +67,95 @@ body {
     }
 
     #departments-container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1600px;
         overflow: hidden;
+        justify-content: center;
+
+        margin: 0px auto;
+        padding-top: 20px;
+
+        transition: 1s;
+        transition-timing-function: ease;
+
+        @media screen and (max-width: 1600px) {
+            max-width: 1300px;
+        }
+
+        @media screen and (max-width: 1320px) {
+            max-width: 980px;
+        }
+
+        @media screen and (max-width: 990px) {
+            max-width: 650px;
+        }
+
+        @media screen and (max-width: 680px) {
+            max-width: 300px;
+        }
+
         .department-card {
+            width: 20%;
+            min-height: 250px;
+            padding: 10px;
+
+            @media screen and (max-width: 1600px) {
+                min-width: 25%;
+            }
+
+            @media screen and (max-width: 1320px) {
+                min-width: 33%;
+            }
+
+            @media screen and (max-width: 990px) {
+                min-width: 50%;
+            }
+
+            @media screen and (max-width: 680px) {
+                min-width: 100%;
+            }
+
             .department-button {
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 300px;
+                height: 100%;
+
                 .department-image-container {
+                    position: absolute;
+                    top: 0px;
+
+                    background-image: linear-gradient(0deg, #E4002B 5px, #FFFFFF 5px);
+
+                    transition: 1s;
+                    transition-timing-function: ease;
+
                     img {
                         width: 300px;
                         height: 170px;
+
+                        object-fit: cover;
+                        object-position: center;
+
+                        transition: 1s;
+                        transition-timing-function: ease;
                     }
+                }
+
+                .department-image-container:hover {
+                    box-shadow: inset 0px -200px 0px -10px #E4002B;
+
+                    img {
+                        opacity: 0.3;
+                    }
+                }
+
+                h2 {
+                    position: absolute;
+                    top: 180px;
+                    text-align: start;
                 }
             }
         }
