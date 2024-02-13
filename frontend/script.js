@@ -127,6 +127,46 @@ const loadEvent = async () => {
             }
             paginationFunc();
 
+            // Load prev and next buttons
+            function prevAndNextButtons() {
+                pagination.insertAdjacentHTML("afterbegin",
+                    `<a id="button-previous" href="#">&lt;&lt;</a>`)
+                pagination.insertAdjacentHTML("beforeend",
+                    '<a id="button-next" href="#">&gt;&gt;</a>')
+            }
+            prevAndNextButtons();
+
+            const currentActive = pagination.querySelector(".active");
+            const currentActiveId = Number(currentActive.id.slice(1));
+
+            const prevButton = document.querySelector("#button-previous");
+            prevButton.addEventListener("click", () => {
+                if (currentActiveId > 1) {
+                    currentPage--;
+                    showObjects(currentPage);
+
+                    let prevCurrentActiveId = ("#a" + (currentActiveId - 1));
+                    currentActive.classList.remove("active");
+                    pagination.querySelector(prevCurrentActiveId).classList.add("active");
+
+                    setupPagination(currentPage);
+                }
+            }, { once: true });
+
+            const nextButton = document.querySelector("#button-next");
+            nextButton.addEventListener("click", () => {
+                if (currentActiveId < totalPages) {
+                    currentPage++;
+                    showObjects(currentPage);
+
+                    let nextCurrentActiveId = ("#a" + (currentActiveId + 1));
+                    currentActive.classList.remove("active");
+                    pagination.querySelector(nextCurrentActiveId).classList.add("active");
+
+                    setupPagination(currentPage);
+                }
+            }, { once: true });
+
         }
         setupPagination(currentPage);
         showObjects(currentPage);
