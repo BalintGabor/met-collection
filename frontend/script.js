@@ -41,6 +41,20 @@ const loadEvent = async () => {
         const objects = responseJson.objectIDs;
         console.log(responseJson)
         console.log(objects)
+
+        const objectsPerPage = 10;
+        let currentPage = 1;
+    
+        // Load the current page's objects
+        function showObjects(page) {
+          const startIndex = (page - 1) * objectsPerPage;
+          const endIndex = startIndex + objectsPerPage;
+          const pageObjects = objects.slice(startIndex, endIndex);
+          console.log(pageObjects)
+    
+        
+        }
+        showObjects(currentPage);
     }
 }
 
