@@ -121,6 +121,10 @@ const loadEvent = async () => {
 
                 objectsContainer.appendChild(div);
 
+                // Scrolling with a waiting time for loading
+                if (document.readyState == "complete") {
+                    objectsContainer.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
             });
         }
 
