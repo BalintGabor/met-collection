@@ -253,5 +253,48 @@ body {
                 }
             }
         }
+        
+        #pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            a {
+                border: 1px solid #DDDDDD;
+                padding: 8px 16px;
+
+                background-color: #F0F0F0;
+                text-decoration: none;
+                color: #89001A;
+
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            #pagination {
+                height: fit-content;
+                border-radius: 5px;
+
+                a:first-child {
+                    margin-right: 10px;
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                }
+
+                a:last-child {
+                    margin-left: 10px;
+                    border-top-right-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                }
+
+                a.active {
+                    background-color: #E4002B;
+                    color: #FFFFFF;
+                }
+
+                a:hover:not(.active) {
+                    background-color: #DDDDDD;
+                }
+            }
+        }
     }
 }

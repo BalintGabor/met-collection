@@ -312,4 +312,54 @@ body #objects #objects-container .object-container h4 {
   overflow: hidden;
   font-weight: 500;
 }
+
+body #objects #pagination-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body #objects #pagination-container a {
+  border: 1px solid #DDDDDD;
+  padding: 8px 16px;
+  background-color: #F0F0F0;
+  text-decoration: none;
+  color: #89001A;
+  -webkit-transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+body #objects #pagination-container #pagination {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 5px;
+}
+
+body #objects #pagination-container #pagination a:first-child {
+  margin-right: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+body #objects #pagination-container #pagination a:last-child {
+  margin-left: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+body #objects #pagination-container #pagination a.active {
+  background-color: #E4002B;
+  color: #FFFFFF;
+}
+
+body #objects #pagination-container #pagination a:hover:not(.active) {
+  background-color: #DDDDDD;
+}
 /*# sourceMappingURL=style.css.map */

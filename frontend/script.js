@@ -135,10 +135,17 @@ const loadEvent = async () => {
             pagination.innerHTML = "";
             pagination.style.margin = "20px 0px 40px";
 
+            // Number of the visible pages before and after the currentPage in the pagination tab
+            let paginationDistance;
+            if (window.innerWidth < 680) {
+                paginationDistance = 2;
+            } else {
+                paginationDistance = 3;
+            }
+
             // Even if there were fewer pages before or after the currentPage than the paginationDistance, the same number of pages (2x paginationDistance + currentPage) should appear in the pagination
             const totalPages = Math.ceil(objects.length / objectsPerPage)
             let paginationStart, paginationEnd;
-            let paginationDistance = 3;
             if ((currentPage - paginationDistance) < 1) {
                 paginationStart = 1;
                 paginationEnd = paginationStart + (2 * paginationDistance);
