@@ -34,7 +34,7 @@ const loadEvent = async () => {
     }
 
     async function chosenDepartment(departmentId) {
-    
+
         // Fetch the chosen department's objects
         const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&departmentId=${departmentId}&q=""`);
         const responseJson = await response.json();
@@ -44,15 +44,38 @@ const loadEvent = async () => {
 
         const objectsPerPage = 10;
         let currentPage = 1;
-    
+
         // Load the current page's objects
         function showObjects(page) {
-          const startIndex = (page - 1) * objectsPerPage;
-          const endIndex = startIndex + objectsPerPage;
-          const pageObjects = objects.slice(startIndex, endIndex);
-          console.log(pageObjects)
-    
-        
+            const startIndex = (page - 1) * objectsPerPage;
+            const endIndex = startIndex + objectsPerPage;
+            const pageObjects = objects.slice(startIndex, endIndex);
+
+            const objectsContainer = document.querySelector("#objects-container");
+            objectsContainer.innerHTML = "";
+
+            // Create and fill up html dom for all the selected objects 
+            pageObjects.forEach(async (objectId) => {
+
+                // Starting with fetched data
+                const responseObject = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectId}`);
+                const responseObjectJson = await responseObject.json();
+
+                const div = document.createElement("div");
+                div.className = "object-container";
+
+                div.innerHTML = `
+                    <div class="object-image-container">
+                        <img src="${responseObjectJson.primaryImageSmall}" alt="object">
+                    </div>
+                    <h3>${responseObjectJson.title}</h3>
+                    <h4>${responseObjectJson.region}</h4>
+                    <h4>${responseObjectJson.objectDate}</h4>
+                `;
+
+                objectsContainer.appendChild(div);
+            });
+
         }
         showObjects(currentPage);
     }
